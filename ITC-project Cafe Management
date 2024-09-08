@@ -1,0 +1,589 @@
+#include<iostream>
+using namespace std;
+int main(){
+	int p;
+	int flag1 = 1;
+	do{
+		int menu;
+		cout << "------------------------WELCOME TO STUDENT MANAGEMENT SYSTEM--------------------------------" << endl;
+		cout << "|| MENU ||" << endl;
+		cout << "Kindly Select from the f0llowing options" << endl;
+		cout << "        Press 1   for   View a student record. " << endl;
+		cout << "        Press 2   for   Insert a new record." << endl;
+		cout << "        Press 3   for   Alter a record." << endl;
+		cout << "	Press 4   for   Show records of a respective section." << endl;
+		cout << "	Press 5   for   Show records of a respective course." << endl;
+		cout << "	Press 6   for   Show student with highest CGPA." << endl;
+		cout << "	Press 7   for   Show student with lowest CGPA." << endl;
+		cout << "	Press 8   for   Show students with mid - term marks less than 50." << endl;
+		cout << "	Press 9   for   Show students with zero marks in Quiz 2." << endl;
+		cout << "	Press 10  for   Show students having a prob(prob means CGPA less than 2.0)." << endl;
+		cout << "	Press 11  for   Alter the mid - term marks of a student only." << endl;
+		cout << "	Press 12  for   Alter the Quiz 1 marks of a student only." << endl;
+		cout << "	Press 13  for   Alter the Quiz 2 marks of a student only." << endl;
+		cout << "	Press 14  for   Alter the Quiz 3 marks of a student only." << endl;
+		cout << "	Press 15  for   Show all the records." << endl;
+		cout << "	Press 16  for   Exit." << endl;
+		cout << "NOTE! : Strength of all the classes is 50" << endl;
+
+
+		int sem1roll[50] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
+		int sem2roll[50] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
+		int sem3roll[50] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
+		int sem1quiz1[51] = { 1, 0, 5, 6, 7, 8, 9, 10, 10, 10, 4, 7, 8, 2, 2, 3, 4, 3, 6, 0, 10, 5, 6, 7, 8, 8, 8, 9, 6, 10, 5, 6, 7, 5, 4, 8, 5, 4, 2, 3, 4, 5, 6, 7, 5, 7, 3, 10, 10, 4, 0 };
+		int sem1quiz2[50] = { 1, 9, 2, 8, 3, 8, 4, 5, 1, 2, 4, 5, 2, 1, 0, 9, 3, 5, 8, 1, 1, 9, 2, 8, 3, 8, 4, 5, 1, 2, 4, 5, 2, 1, 0, 9, 3, 5, 8, 1, 5, 2, 1, 0, 9, 3, 5, 8, 1, 1 };
+		int sem1quiz3[51] = { 10, 7, 8, 9, 0, 4, 3, 6, 5, 8, 10, 10, 5, 4, 5, 6, 7, 4, 9, 3, 2, 0, 0, 3, 10, 2, 3, 6, 8, 9, 4, 3, 2, 7, 8, 9, 7, 6, 1, 10, 10, 8, 9, 8, 8, 7, 5, 4, 3, 0
+		};
+		int sem2quiz1[51] = { 3, 9, 5, 6, 7, 8, 9, 10, 10, 10, 4, 7, 8, 2, 2, 3, 4, 3, 6, 4, 10, 5, 6, 7, 8, 8, 8, 9, 6, 10, 5, 6, 7, 5, 4, 8, 5, 4, 2, 3, 4, 5, 6, 7, 5, 7, 3, 10, 10, 4, 0 };
+		int sem2quiz2[51] = { 4, 9, 5, 6, 7, 8, 9, 10, 10, 10, 4, 7, 8, 2, 2, 3, 4, 3, 6, 4, 10, 5, 6, 7, 8, 8, 8, 9, 6, 10, 5, 6, 7, 5, 4, 8, 5, 4, 2, 3, 4, 5, 6, 7, 5, 7, 3, 10, 10, 4, 0 };
+		int sem2quiz3[51] = { 10, 7, 8, 9, 0, 4, 3, 6, 5, 8, 10, 10, 5, 4, 5, 6, 7, 4, 9, 3, 2, 0, 0, 3, 10, 2, 3, 6, 8, 9, 4, 3, 2, 7, 8, 9, 7, 6, 1, 10, 10, 8, 9, 8, 8, 7, 5, 4, 3, 0
+		};
+		int sem3quiz1[51] = { 7, 9, 5, 6, 7, 8, 9, 10, 10, 10, 4, 7, 8, 2, 2, 3, 4, 3, 6, 4, 10, 5, 6, 7, 8, 8, 8, 9, 6, 10, 5, 6, 7, 5, 4, 8, 5, 4, 2, 3, 4, 5, 6, 7, 5, 7, 3, 10, 10, 4, 0 };
+		int sem3quiz2[51] = { 8, 9, 5, 6, 7, 8, 9, 10, 10, 10, 4, 7, 8, 2, 2, 3, 4, 3, 6, 4, 10, 5, 6, 7, 8, 8, 8, 9, 6, 10, 5, 6, 7, 5, 4, 8, 5, 4, 2, 3, 4, 5, 6, 7, 5, 7, 3, 10, 10, 4, 0 };
+		int sem3quiz3[51] = { 10, 7, 8, 9, 0, 4, 3, 6, 5, 8, 10, 10, 5, 4, 5, 6, 7, 4, 9, 3, 2, 0, 0, 3, 10, 2, 3, 6, 8, 9, 4, 3, 2, 7, 8, 9, 7, 6, 1, 10, 10, 8, 9, 8, 8, 7, 5, 4, 3, 0
+		};
+		int sem1mid[50] = { 66, 57, 90, 89, 83, 68, 44, 38, 84, 76, 61, 65, 69, 81, 83, 78, 49, 47, 77, 90, 70, 80, 83, 30, 25, 66, 88, 90, 10, 83, 68, 44, 38, 84, 76, 61, 65, 69, 81, 83, 78, 49, 47, 77, 90, 70, 80, 83, 30, 25 };
+		int sem2mid[50] = { 66, 81, 90, 89, 83, 68, 41, 98, 87, 69, 92, 65, 69, 81, 83, 78, 49, 47, 77, 90, 70, 80, 83, 30, 25, 70, 80, 83, 30, 25, 68, 44, 38, 84, 76, 61, 65, 69, 81, 83, 40, 38, 20, 57, 82, 99, 87, 95, 70, 85 };
+		int sem3mid[50] = { 70, 80, 83, 30, 25, 68, 44, 38, 84, 76, 61, 65, 69, 81, 83, 40, 38, 20, 57, 82, 99, 87, 95, 70, 85, 66, 88, 90, 89, 83, 68, 44, 38, 84, 76, 61, 65, 69, 81, 83, 78, 49, 47, 77, 90, 70, 80, 83, 30, 25 };
+		int sem1 = 1, sem2 = 2, sem3 = 3;
+		float cgpa[50] = { 2.0, 3.87, 2.78, 3.7, 2.9, 3.1, 3.3, 3.1, 3.6, 2.9, 2.7, 3.0, 3.9, 4.0, 2.1, 1.9, 3.1, 1.7, 2.4, 2.8, 3.1, 3.3, 3.1, 3.6, 2.9, 2.0, 3.87, 2.78, 3.7, 2.9, 1.9, 3.1, 1.7, 2.4, 2.8, 1.2, 4.2, 3.1, 2.7, 2.3, 2.7, 2.0, 2.9, 3.5, 3.5, 3.4, 2.9, 3.1, 4.0, 3.2 };
+		float cgpa1[50];
+		int section1 = 10, section2 = 11, section3 = 12;
+		int course1 = 10213, course2 = 10811, course3 = 23011;
+		int rollno1[50], rollno2[50], rollno3[50];
+		int midmarks[50], midmarks2[50], midmarks3[50];
+		int a, b, d, e, f, g, h, j, k, m, n = 0, z;
+		float c;
+		int quiz1[50], quiz2[50], quiz3[50], quiz11[50], quiz22[50], quiz33[50], quiz111[50], quiz222[50], quiz333[50], rollnocourse1[50], rollnocourse2[50], rollnocourse3[50], r, s;
+		int rollnosection1[50], rollnosection2[50], rollnosection3[50];
+
+
+		for (int i = 1; i <= 50; i++){
+			rollno1[i] = { sem1roll[i] };
+			rollno2[i] = { sem2roll[i] };
+			rollno3[i] = { sem3roll[i] };
+			rollnocourse1[50] = { course1 };
+			rollnocourse2[50] = { course2 };
+			rollnocourse3[50] = { course3 };
+			midmarks[i] = { sem1mid[i] };
+			midmarks2[i] = { sem2mid[i] };
+			midmarks3[i] = { sem3mid[i] };
+			quiz1[i] = { sem1quiz1[i] };
+			quiz2[i] = { sem1quiz2[i] };
+			quiz3[i] = { sem1quiz3[i] };
+			quiz11[i] = { sem2quiz1[i] };
+			quiz22[i] = { sem2quiz2[i] };
+			quiz33[i] = { sem2quiz3[i] };
+			quiz111[i] = { sem3quiz1[i] };
+			quiz222[i] = { sem3quiz2[i] };
+			quiz333[i] = { sem3quiz3[i] };
+			cgpa1[i] = { cgpa[i] };
+			rollnosection1[50] = { section1 };
+			rollnosection2[50] = { section2 };
+			rollnosection3[50] = { section3 };
+		}
+		cout << "Select an option" << endl;
+		cin >> menu;
+
+
+		if (menu == 1){
+			cout << "Classes Strength is 50" << endl;
+			cout << "Enter student roll no:" << endl;
+			cin >> r;
+			cout << "Enter Student Semester(i.e 1/2/3)" << endl;
+			cin >> s;
+			if (s = 1){
+				cout << "Student record is as follows:" << endl;
+				cout << "Student Roll no is: " << rollno1[r] << endl;
+				cout << "Student Semester is: " << s << endl;
+				cout << "CGPA = " << cgpa1[r] << endl;
+				cout << "Section : " << section1 << endl;
+				cout << " Course Code = " << course1 << endl;
+				cout << "Quiz 1 marks= " << quiz1[r] << endl;
+				cout << " Quiz 2 marks = " << quiz2[r] << endl;
+				cout << "Quiz 3 = " << quiz3[r] << endl;
+				cout << "Mid - term marks = " << midmarks[r] << endl;
+
+			}
+			else if (s = 2){
+				cout << "Student record is as follows:" << endl;
+				cout << "Student Roll no is: " << rollno2[r] << endl;
+				cout << "Student Semester is: " << s << endl;
+				cout << "CGPA = " << cgpa1[r] << endl;
+				cout << "Section : " << section2 << endl;
+				cout << " Course Code = " << course2 << endl;
+				cout << "Quiz 1 marks= " << quiz11[r] << endl;
+				cout << " Quiz 2 marks = " << quiz22[r] << endl;
+				cout << "Quiz 3 = " << quiz33[r] << endl;
+				cout << "Mid - term marks = " << midmarks2[r] << endl;
+			}
+			else if (s = 3){
+				cout << "Student record is as follows:" << endl;
+				cout << "Student Roll no is: " << rollno3[r] << endl;
+				cout << "Student Semester is: " << s << endl;
+				cout << "CGPA = " << cgpa1[r] << endl;
+				cout << "Section : " << section3 << endl;
+				cout << " Course Code = " << course3 << endl;
+				cout << "Quiz 1 marks= " << quiz111[r] << endl;
+				cout << " Quiz 2 marks = " << quiz222[r] << endl;
+				cout << "Quiz 3 = " << quiz333[r] << endl;
+				cout << "Mid - term marks = " << midmarks3[r] << endl;
+			}
+		}
+
+
+
+
+		else if (menu == 2){
+			cout << "Enter information," << endl;
+			cout << "Semester of Student: (i.e 1/2/3)" << endl;
+			cin >> a;
+			cout << "Enter roll number: (Class Strength is 50)" << endl;
+			cin >> b;
+			cout << "Enter CGPA: (OUT OF 4) " << endl;
+			cin >> c;
+			cout << "Enter section: (i.e 10/11/12)" << endl;
+			cin >> d;
+			cout << "Enter course code" << endl;
+			cin >> e;
+			cout << "Enter Quiz 1 Marks:  (OUT OF 10)" << endl;
+			cin >> f;
+			cout << "Enter Quiz Marks 2:  (OUT OF 10)" << endl;
+			cin >> g;
+			cout << "Enter Quiz Marks 3:   (OUT OF 10)" << endl;
+			cin >> h;
+			cout << "Enter Mid Term Marks: (OUT OF 100)" << endl;
+			cin >> j;
+
+			cout << "\nDisplaying Information," << endl;
+
+			cout << "Semester: " << a << endl;
+			cout << "Roll no: " << b << endl;
+			cout << "CGPA: " << c << endl;
+			cout << "Section: " << d << endl;
+			cout << "Course Code: " << e << endl;
+			cout << "Quiz Marks 1: " << f << endl;
+			cout << "Quiz Marks 2 " << g << endl;
+			cout << "Quiz Marks 3: " << h << endl;
+			cout << "Mid Term Marks: " << j << endl;
+		}
+
+		else if (menu == 3){
+
+
+			cout << "Enter Semester no of the student whose record you want to edit: (i.e 1/2/3)" << endl;
+			cin >> z;
+
+			if (z == 1){
+				cout << "Enter the roll no of student whose record you want to edit" << endl;
+				cin >> n;
+				cout << "What do you want to alter in " << rollno1[n] << "s record" << endl;
+				cout << "Press 1 to edit cgpa " << endl;
+				cout << "Press 2 to edit quiz 1 marks " << endl;
+				cout << "Press 3 to edit quiz 2 marks" << endl;
+				cout << "Press 4 to edit quiz 3 marks" << endl;
+				cout << "Press 5 to edit mid term marks" << endl;
+				cout << "Press:";
+				cin >> a;
+				if (a == 1){
+					cout << "Enter new cgpa " << endl;
+					cin >> c;
+					cgpa1[n] = { c };
+				}
+				else if (a == 2){
+					cout << "Enter quiz 1 marks " << endl;
+					cin >> b;
+					quiz1[n] = { b };
+				}
+				else if (a == 3){
+					cout << "Enter quiz 2 marks " << endl;
+					cin >> b;
+					quiz2[n] = { b };
+				}
+				else if (a == 4){
+					cout << "Enter quiz 3 marks " << endl;
+					cin >> b;
+					quiz3[n] = { b };
+
+				}
+				else if (a == 5){
+					cout << "Enter new mids marks " << endl;
+					cin >> b;
+					midmarks[n] = { b };
+				}
+				cout << "Updated record of the student is: " << endl;
+				cout << "Student Roll no is: " << rollno1[n] << endl;
+				cout << "Student Semester is: " << z << endl;
+				cout << "CGPA = " << cgpa1[n] << endl;
+				cout << "Section : " << section1 << endl;
+				cout << " Course Code = " << course1 << endl;
+				cout << "Quiz 1 marks= " << quiz1[n] << endl;
+				cout << " Quiz 2 marks = " << quiz2[n] << endl;
+				cout << "Quiz 3 = " << quiz3[n] << endl;
+				cout << "Mid - term marks = " << midmarks[n] << endl;
+
+			}
+			if (z == 2){
+				cout << "Enter the roll no of student whose record you want to edit" << endl;
+				cin >> n;
+				cout << "What do you want to alter in " << rollno2[n] << "s record" << endl;
+				cout << "Press 1 to edit cgpa " << endl;
+				cout << "Press 2 to edit quiz 1 marks " << endl;
+				cout << "Press 3 to edit quiz 2 marks" << endl;
+				cout << "Press 4 to edit quiz 3 marks" << endl;
+				cout << "Press 5 to edit mid term marks" << endl;
+				cout << "Press:";
+				cin >> a;
+				if (a == 1){
+					cout << "Enter new cgpa " << endl;
+					cin >> c;
+					cgpa1[n] = { c };
+				}
+				else if (a == 2){
+					cout << "Enter quiz 1 marks " << endl;
+					cin >> b;
+					quiz11[n] = { b };
+				}
+				else if (a == 3){
+					cout << "Enter quiz 2 marks " << endl;
+					cin >> b;
+					quiz22[n] = { b };
+				}
+				else if (a == 4){
+					cout << "Enter quiz 3 marks " << endl;
+					cin >> b;
+					quiz33[n] = { b };
+
+				}
+				else if (a == 5){
+					cout << "Enter new mids marks " << endl;
+					cin >> b;
+					midmarks2[n] = { b };
+				}
+
+				cout << "Updated Student record is as follows:" << endl;
+				cout << "Student Roll no is: " << rollno2[n] << endl;
+				cout << "Student Semester is: " << z << endl;
+				cout << "CGPA = " << cgpa1[n] << endl;
+				cout << "Section : " << section2 << endl;
+				cout << " Course Code = " << course2 << endl;
+				cout << "Quiz 1 marks= " << quiz11[n] << endl;
+				cout << " Quiz 2 marks = " << quiz22[n] << endl;
+				cout << "Quiz 3 = " << quiz33[n] << endl;
+				cout << "Mid - term marks = " << midmarks2[n] << endl;
+
+			}
+
+			if (z == 3){
+				cout << "Enter the roll no of student whose record you want to edit" << endl;
+				cin >> n;
+				cout << "What do you want to alter in " << rollno3[n] << "s record" << endl;
+				cout << "Press 1 to edit cgpa " << endl;
+				cout << "Press 2 to edit quiz 1 marks " << endl;
+				cout << "Press 3 to edit quiz 2 marks" << endl;
+				cout << "Press 4 to edit quiz 3 marks" << endl;
+				cout << "Press 5 to edit mid term marks" << endl;
+				cout << "Press:";
+				cin >> a;
+				if (a == 1){
+					cout << "Enter new cgpa " << endl;
+					cin >> c;
+					cgpa1[n] = { c };
+				}
+				else if (a == 2){
+					cout << "Enter quiz 1 marks " << endl;
+					cin >> b;
+					quiz111[n] = { b };
+				}
+				else if (a == 3){
+					cout << "Enter quiz 2 marks " << endl;
+					cin >> b;
+					quiz222[n] = { b };
+				}
+				else if (a == 4){
+					cout << "Enter quiz 3 marks " << endl;
+					cin >> b;
+					quiz333[n] = { b };
+
+				}
+				else if (a == 5){
+					cout << "Enter new mids marks " << endl;
+					cin >> b;
+					midmarks3[n] = { b };
+				}
+
+				cout << "Student record is as follows:" << endl;
+				cout << "Student Roll no is: " << rollno3[n] << endl;
+				cout << "Student Semester is: " << z << endl;
+				cout << "CGPA = " << cgpa1[n] << endl;
+				cout << "Section : " << section3 << endl;
+				cout << " Course Code = " << course3 << endl;
+				cout << "Quiz 1 marks= " << quiz111[n] << endl;
+				cout << " Quiz 2 marks = " << quiz222[n] << endl;
+				cout << "Quiz 3 = " << quiz333[n] << endl;
+				cout << "Mid - term marks = " << midmarks3[n] << endl;
+			}
+
+		}
+
+		else if (menu == 4){
+			cout << "Which section's record you want to see(i.e 10/11/12)" << endl;
+			cin >> s;
+			if (s == 10){
+				cout << "Showing Records of section " << s << endl;
+				for (int x = 1; x < 50; x++){
+					cout << "_______________________________________________________________" << endl;
+					cout << "--Rollno= " << rollno1[x] << "--" << endl;
+					cout << "Semester: " << sem1 << endl;
+					cout << "Mids-Marks: " << midmarks[x] << endl;
+					cout << "Quiz 1 marks: " << quiz1[x] << endl;
+					cout << "Quiz 2 marks: " << quiz2[x] << endl;
+					cout << "Quiz 3 marks: " << quiz3[x] << endl;
+					cout << "CGPA : " << cgpa1[x] << endl;
+					cout << "Course No: " << course1 << endl;
+					cout << "________________________________________________________________" << endl;
+				}
+			}
+			if (s == 11){
+				cout << "Showing Records of section " << s << endl;
+				for (int x = 1; x < 50; x++){
+					cout << "_______________________________________________________________" << endl;
+					cout << "--Rollno= " << rollno2[x] << "--" << endl;
+					cout << "Semester: " << sem2 << endl;
+					cout << "Mids-Marks: " << midmarks2[x] << endl;
+					cout << "Quiz 1 marks: " << quiz11[x] << endl;
+					cout << "Quiz 2 marks: " << quiz22[x] << endl;
+					cout << "Quiz 3 marks: " << quiz33[x] << endl;
+					cout << "CGPA : " << cgpa1[x] << endl;
+					cout << "Course No: " << course2 << endl;
+					cout << "________________________________________________________________" << endl;
+				}
+			}
+			if (s == 12){
+				cout << "Showing Records of section " << s << endl;
+				for (int x = 1; x < 50; x++){
+					cout << "_______________________________________________________________" << endl;
+					cout << "--Rollno= " << rollno3[x] << "--" << endl;
+					cout << "Semester: " << sem3 << endl;
+					cout << "Mids-Marks: " << midmarks3[x] << endl;
+					cout << "Quiz 1 marks: " << quiz111[x] << endl;
+					cout << "Quiz 2 marks: " << quiz222[x] << endl;
+					cout << "Quiz 3 marks: " << quiz333[x] << endl;
+					cout << "CGPA : " << cgpa1[x] << endl;
+					cout << "Course No: " << course3 << endl;
+					cout << "________________________________________________________________" << endl;
+				}
+			}
+		}
+
+		else if (menu == 5){
+			cout << "Enter Course No (i.e 10213/10811/23011)" << endl;
+			cin >> s;
+			if (s == 10213){
+				cout << "Showing Records of course " << s << endl;
+				for (int x = 1; x < 50; x++){
+					cout << "_______________________________________________________________" << endl;
+					cout << "--Rollno= " << rollno1[x] << "--" << endl;
+					cout << "Semester: " << sem1 << endl;
+					cout << "Mids-Marks: " << midmarks[x] << endl;
+					cout << "Quiz 1 marks: " << quiz1[x] << endl;
+					cout << "Quiz 2 marks: " << quiz2[x] << endl;
+					cout << "Quiz 3 marks: " << quiz3[x] << endl;
+					cout << "CGPA : " << cgpa1[x] << endl;
+					cout << "Course No: " << course1 << endl;
+					cout << "________________________________________________________________" << endl;
+				}
+			}
+			if (s == 10811){
+				cout << "Showing Records of course " << s << endl;
+				for (int x = 1; x < 50; x++){
+					cout << "_______________________________________________________________" << endl;
+					cout << "--Rollno= " << rollno2[x] << "--" << endl;
+					cout << "Semester: " << sem2 << endl;
+					cout << "Mids-Marks: " << midmarks2[x] << endl;
+					cout << "Quiz 1 marks: " << quiz11[x] << endl;
+					cout << "Quiz 2 marks: " << quiz22[x] << endl;
+					cout << "Quiz 3 marks: " << quiz33[x] << endl;
+					cout << "CGPA : " << cgpa1[x] << endl;
+					cout << "Course No: " << course2 << endl;
+					cout << "________________________________________________________________" << endl;
+				}
+			}
+			if (s == 23011){
+				cout << "Showing Records of section " << s << endl;
+				for (int x = 1; x < 50; x++){
+					cout << "_______________________________________________________________" << endl;
+					cout << "--Rollno= " << rollno3[x] << "--" << endl;
+					cout << "Semester: " << sem3 << endl;
+					cout << "Mids-Marks: " << midmarks3[x] << endl;
+					cout << "Quiz 1 marks: " << quiz111[x] << endl;
+					cout << "Quiz 2 marks: " << quiz222[x] << endl;
+					cout << "Quiz 3 marks: " << quiz333[x] << endl;
+					cout << "CGPA : " << cgpa1[x] << endl;
+					cout << "Course No: " << course3 << endl;
+					cout << "________________________________________________________________" << endl;
+				}
+			}
+		}
+
+		else if (menu == 6){
+			for (int x = 2; x < 50; ++x) {
+				if (cgpa1[x] > 3.9){
+					cout << "___________________________________" << endl;
+					cout << "Student roll no = " << rollno1[x] << endl;
+					cout << "He has the Highest CGPA of : " << 4.0 << endl;
+					cout << "___________________________________" << endl;
+				}
+			}
+		}
+
+		else if (menu == 7){
+			for (int x = 2; x < 50; ++x) {
+				if (cgpa1[x] < 1.3){
+					cout << "___________________________________" << endl;
+					cout << "Student roll no = " << rollno2[x] << endl;
+					cout << "He has the Lowest CGPA of : " << cgpa1[x] << endl;
+					cout << "Mid term marks = " << midmarks2[x] << endl;
+					cout << "Semester= " << sem2 << endl;
+					cout << "Course no: " << course2 << endl;
+					cout << "Quiz 1 = " << quiz11[x] << endl;
+					cout << "Quiz 2 = " << quiz22[x] << endl;
+					cout << "Quiz 3 = " << quiz33[x] << endl;
+					cout << "___________________________________" << endl;
+				}
+			}
+		}
+
+		else if (menu == 8){
+			cout << "Students with midterm marks less than 50 are" << endl;
+			for (int x = 2; x < 50; x++){
+				if (midmarks[x] < 50){
+					cout << "________________________________________" << endl;
+					cout << "Student ROLL NO:" << rollno1[x] << endl;
+					cout << "His midterm score is: " << midmarks[x] << endl;
+					cout << "________________________________________" << endl;
+				}
+			}
+		}
+		else if (menu == 9){
+			cout << "Students with zero marks in Quiz 2 are:" << endl;
+			for (int x = 2; x < 50; x++){
+				if (quiz2[x] == 0){
+					cout << "Student ROLL NO:" << rollno1[x] << endl;
+					cout << "________________________________________" << endl;
+					cout << endl;
+				}
+			}
+		}
+
+		else if (menu == 10){
+			cout << "Showing students having a prob: " << endl;
+			for (int x = 2; x < 50; x++){
+				if (cgpa1[x] < 2.0){
+					cout << "Student ROLL NO:" << rollno1[x] << endl;
+					cout << "CGPA= " << cgpa1[x] << endl;
+					cout << "________________________________________" << endl;
+				}
+			}
+		}
+		else if (menu == 11){
+			cout << "Write the roll no of the student whose mid term marks you want to alter" << endl;
+			cin >> n;
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "Mid term marks = " << midmarks[n] << "/100" << endl;
+			cout << "Enter New Marks" << endl;
+			cout << "Enter:";
+			cin >> m;
+			midmarks[n] = { m };
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "New mid term marks = " << midmarks[n] << "/100" << endl;
+		}
+		else if (menu == 12){
+			cout << "Enter the roll no of the student whose Quiz 1 marks you want to alter" << endl;
+			cin >> n;
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "Quiz 1 marks = " << quiz1[n] << "/10" << endl;
+			cout << "Enter New Marks" << endl;
+			cout << "Enter:";
+			cin >> m;
+			quiz1[n] = { m };
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "New Quiz 1 marks = " << quiz1[n] << "/10" << endl;
+		}
+		else if (menu == 13){
+			cout << "Enter the roll no of the student whose Quiz 2 marks you want to alter" << endl;
+			cin >> n;
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "Quiz 2 marks = " << quiz2[n] << "/10" << endl;
+			cout << "Enter New Marks" << endl;
+			cout << "Enter:";
+			cin >> m;
+			quiz2[n] = { m };
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "New Quiz 2 marks = " << quiz2[n] << "/10" << endl;
+		}
+		else if (menu == 14){
+			cout << "Enter the roll no of the student whose Quiz 3 marks you want to alter" << endl;
+			cin >> n;
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "Quiz 3 marks = " << quiz3[n] << "/10" << endl;
+			cout << "Enter New Marks" << endl;
+			cout << "Enter:";
+			cin >> m;
+			quiz3[n] = { m };
+			cout << "Roll no of Student: " << rollno1[n] << endl;
+			cout << "New Quiz 1 marks = " << quiz3[n] << "/10" << endl;
+		}
+		else if (menu == 15){
+			cout << "-------Showing All Records--------" << endl;
+			cout << "        SEMESTER 1 RECORDS:      " << endl;
+			for (int x = 1; x < 50; x++){
+				cout << "_______________________________________________________________" << endl;
+				cout << "--Rollno= " << rollno1[x] << "--" << endl;
+				cout << "Semester: " << sem1 << endl;
+				cout << "Mids-Marks: " << midmarks[x] << endl;
+				cout << "Quiz 1 marks: " << quiz1[x] << endl;
+				cout << "Quiz 2 marks: " << quiz2[x] << endl;
+				cout << "Quiz 3 marks: " << quiz3[x] << endl;
+				cout << "CGPA : " << cgpa1[x] << endl;
+				cout << "Course No: " << course1 << endl;
+				cout << "________________________________________________________________" << endl;
+			}
+			cout << "        SEMESTER 2 RECORDS:      " << endl;
+			for (int w = 1; w < 50; w++){
+				cout << "_______________________________________________________________" << endl;
+				cout << "--Rollno= " << rollno1[w] << "--" << endl;
+				cout << "Semester: " << sem2 << endl;
+				cout << "Mids-Marks: " << midmarks2[w] << endl;
+				cout << "Quiz 1 marks: " << quiz11[w] << endl;
+				cout << "Quiz 2 marks: " << quiz22[w] << endl;
+				cout << "Quiz 3 marks: " << quiz33[w] << endl;
+				cout << "CGPA : " << cgpa1[w] << endl;
+				cout << "Course No: " << course2 << endl;
+				cout << "________________________________________________________________" << endl;
+			}
+			cout << "        SEMESTER 3 RECORDS:      " << endl;
+			for (int w = 1; w < 50; w++){
+				cout << "_______________________________________________________________" << endl;
+				cout << "--Rollno= " << rollno3[w] << "--" << endl;
+				cout << "Semester: " << sem3 << endl;
+				cout << "Mids-Marks: " << midmarks3[w] << endl;
+				cout << "Quiz 1 marks: " << quiz111[w] << endl;
+				cout << "Quiz 2 marks: " << quiz222[w] << endl;
+				cout << "Quiz 3 marks: " << quiz333[w] << endl;
+				cout << "CGPA : " << cgpa1[w] << endl;
+				cout << "Course No: " << course3 << endl;
+				cout << "________________________________________________________________" << endl;
+			}
+		}
+		else if (menu == 16){
+
+			cout << "----------GOOD BYE----------" << endl;
+		}
+		cout << "Do you want to Select Another Menu?(Press 1 for YES | Press 0 for NO " << endl;
+		cin >> p;
+	} while (p == flag1);
+
+	system("pause");
+	return 0;
+}
